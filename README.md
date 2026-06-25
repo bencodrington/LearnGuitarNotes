@@ -17,7 +17,13 @@ The app guides you through a structured daily routine for memorising every note 
 ## Development
 
 ```bash
-npm install
-npm run dev        # starts dev server (exposed on local network for mobile via --host)
-npm run build      # production build
+yarn install
+yarn run dev        # starts dev server (exposed on local network for mobile via --host)
+yarn run build      # production build
+```
+
+## Deployment
+```bash
+firebase login
+firebase deploy
 ```
