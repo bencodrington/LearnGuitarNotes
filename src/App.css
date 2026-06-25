@@ -1,0 +1,508 @@
+/* ── App shell ─────────────────────────────────────────────────────────── */
+
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-h);
+  white-space: nowrap;
+}
+
+/* ── Timer ───────────────────────────────────────────────────────────────── */
+
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.timer-text {
+  font-size: 14px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.timer-bar {
+  width: 72px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.timer-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.5s linear;
+}
+
+.timer-done {
+  font-size: 22px;
+  color: #16a34a;
+  line-height: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .timer-done { color: #4ade80; }
+}
+
+/* ── Main content area ───────────────────────────────────────────────────── */
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 32px;
+  gap: 20px;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Step stepper ────────────────────────────────────────────────────────── */
+
+.step-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+.step-connector {
+  width: 24px;
+  height: 2px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.step-dot:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.step-dot.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  opacity: 1;
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.step-dot.done {
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .step-dot.done { border-color: #4ade80; background: #4ade80; color: #111; }
+}
+
+/* ── Section stepper ─────────────────────────────────────────────────────── */
+
+.section-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.section-dot {
+  min-width: 30px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 13px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  opacity: 0.55;
+}
+
+.section-dot:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.section-dot.active {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.section-dot.done {
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-dot.done { border-color: #4ade80; background: #4ade80; color: #111; }
+}
+
+/* ── Step content (shared shell) ─────────────────────────────────────────── */
+
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 12px 0 0;
+}
+
+.step-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+.step-heading {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+/* ── Note display ────────────────────────────────────────────────────────── */
+
+.note-display {
+  font-size: clamp(80px, 20vw, 110px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-h);
+  letter-spacing: -2px;
+  user-select: none;
+}
+
+/* ── Instructions & counters ─────────────────────────────────────────────── */
+
+.step-instructions {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  text-align: center;
+  color: var(--text);
+  max-width: 360px;
+}
+
+.counter-text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+/* ── Next button ─────────────────────────────────────────────────────────── */
+
+.next-btn {
+  margin-top: auto;
+  padding: 16px 44px;
+  font-size: 17px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  min-width: 220px;
+  letter-spacing: 0.01em;
+}
+
+.next-btn:hover { opacity: 0.88; }
+.next-btn:active { transform: scale(0.97); }
+.next-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Metronome bar ───────────────────────────────────────────────────────── */
+
+.metronome-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bpm-label {
+  font-size: 15px;
+  color: var(--text);
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+.mute-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  padding: 0;
+}
+
+.mute-btn:hover { border-color: var(--accent); }
+.mute-btn.muted { opacity: 0.4; }
+.mute-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Step 4: two-note pair ───────────────────────────────────────────────── */
+
+.pair-display {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.pair-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pair-sep {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.4;
+  margin-top: -8px;
+}
+
+.direction-arrow {
+  font-size: 28px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+/* Smaller note display inside pairs */
+.pair-note .note-display {
+  font-size: clamp(52px, 13vw, 76px);
+}
+
+/* ── Step 5: seven notes ─────────────────────────────────────────────────── */
+
+.seven-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+}
+
+.seven-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.seven-note-name {
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 800;
+  color: var(--text-h);
+  line-height: 1;
+}
+
+.seven-note .direction-arrow {
+  font-size: 20px;
+}
+
+/* ── Step 6: BPM grid ────────────────────────────────────────────────────── */
+
+.bpm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.bpm-btn {
+  padding: 18px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.bpm-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.bpm-value {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.recommended-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.bpm-btn.recommended {
+  border-color: var(--accent);
+  border-width: 2.5px;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.bpm-btn.current {
+  border-color: var(--border);
+  background: var(--border);
+  color: var(--text-h);
+  opacity: 0.6;
+}
+
+.bpm-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Timer prompt (session start) ────────────────────────────────────────── */
+
+.timer-prompt {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.timer-prompt h1 {
+  margin: 0;
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1.25;
+  max-width: 480px;
+}
+
+.timer-options {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-option {
+  padding: 18px 48px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.timer-option:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.timer-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.app-footer {
+  text-align: center;
+  padding: 18px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.app-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
