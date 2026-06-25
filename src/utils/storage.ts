@@ -1,4 +1,4 @@
-import { NATURAL_NOTES, EXTENDED_NOTES, shuffle, generatePairs, generateRounds } from './notes';
+import { NATURAL_NOTES, EXTENDED_NOTES, shuffle, shuffleNoAdjacentEnharmonics, generatePairs, generateRounds } from './notes';
 
 export interface Step1Data {
   noteOrders: [string[], string[]]; // two shuffled orderings (pass 1 & 2)
@@ -57,7 +57,7 @@ export function createInitialProgress(): AppProgress {
       completed: false,
     },
     step3: {
-      noteOrder: shuffle(EXTENDED_NOTES),
+      noteOrder: shuffleNoAdjacentEnharmonics(EXTENDED_NOTES),
       currentNoteIndex: 0,
       completed: false,
     },

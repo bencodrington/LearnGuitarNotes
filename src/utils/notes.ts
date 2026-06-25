@@ -23,6 +23,22 @@ export function shuffle<T>(arr: ReadonlyArray<T>): T[] {
   return result;
 }
 
+// Shuffle strings ensuring no two consecutive notes are enharmonically equivalent.
+export function shuffleNoAdjacentEnharmonics(arr: ReadonlyArray<string>): string[] {
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const result = shuffle(arr);
+    let valid = true;
+    for (let i = 0; i < result.length - 1; i++) {
+      if (areEnharmonic(result[i], result[i + 1])) {
+        valid = false;
+        break;
+      }
+    }
+    if (valid) return result;
+  }
+  return shuffle(arr); // fallback (extremely unlikely)
+}
+
 export function areEnharmonic(a: string, b: string): boolean {
   return ENHARMONIC_PAIRS.some(([x, y]) => (a === x && b === y) || (a === y && b === x));
 }
@@ -44,5 +60,5 @@ export function generatePairs(count: number): Array<[string, string]> {
 }
 
 export function generateRounds(count: number, size = 7): string[][] {
-  return Array.from({ length: count }, () => shuffle(EXTENDED_NOTES).slice(0, size));
+  return Array.from({ length: count }, () => shuffleNoAdjacentEnharmonics(EXTENDED_NOTES).slice(0, size));
 }
