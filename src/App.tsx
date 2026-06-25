@@ -10,6 +10,7 @@ import {
   getSectionInfo,
 } from './utils/storage';
 import { useMetronome } from './hooks/useMetronome';
+import Footer from './components/Footer';
 
 // ── Timer Prompt ────────────────────────────────────────────────────────────
 
@@ -358,23 +359,6 @@ function Step6Content({
         ))}
       </div>
     </div>
-  );
-}
-
-// ── Footer ──────────────────────────────────────────────────────────────────
-
-function Footer() {
-  return (
-    <footer className="app-footer">
-      Based on{' '}
-      <a
-        href="https://youtu.be/PJddQ6Q0UDo?si=zLajcpPRgyRgJFG3"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        MusicTheoryForGuitar on YouTube
-      </a>
-    </footer>
   );
 }
 
