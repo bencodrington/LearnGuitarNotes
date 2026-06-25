@@ -25,5 +25,6 @@ yarn run build      # production build
 ## Deployment
 ```bash
 firebase login
+yarn run build
 firebase deploy
 ```
