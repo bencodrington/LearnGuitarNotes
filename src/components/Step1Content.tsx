@@ -3,6 +3,12 @@ import type { AppProgress } from '../utils/storage';
 export default function Step1Content({ progress, onNext }: { progress: AppProgress; onNext: () => void }) {
   const { noteOrders, currentPass, currentNoteIndex } = progress.step1;
   const note = noteOrders[currentPass][currentNoteIndex];
+  const isLastNoteOfPass = currentNoteIndex === noteOrders[currentPass].length - 1;
+  const buttonLabel = isLastNoteOfPass
+    ? currentPass === 0
+      ? 'On to pass 2 →'
+      : 'On to step 2 →'
+    : 'Done, next note →';
   return (
     <div className="step-content">
       <p className="step-label">Step 1 — Natural Notes</p>
@@ -14,7 +20,7 @@ export default function Step1Content({ progress, onNext }: { progress: AppProgre
       </p>
       <p className="counter-text">Pass {currentPass + 1} of 2</p>
       <button className="next-btn" onClick={onNext}>
-        Done, next note →
+        {buttonLabel}
       </button>
     </div>
   );

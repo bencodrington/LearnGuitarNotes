@@ -12,7 +12,9 @@ export default function Step2Content({
   onToggleMute: () => void;
   onNext: () => void;
 }) {
-  const note = progress.step2.noteOrder[progress.step2.currentNoteIndex];
+  const { noteOrder, currentNoteIndex } = progress.step2;
+  const note = noteOrder[currentNoteIndex];
+  const buttonLabel = currentNoteIndex === noteOrder.length - 1 ? 'On to step 3 →' : 'Done, next note →';
   return (
     <div className="step-content">
       <p className="step-label">Step 2 — Add Metronome</p>
@@ -24,7 +26,7 @@ export default function Step2Content({
         One note per beat.
       </p>
       <button className="next-btn" onClick={onNext}>
-        Done, next note →
+        {buttonLabel}
       </button>
     </div>
   );

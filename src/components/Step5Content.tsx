@@ -33,7 +33,7 @@ export default function Step5Content({
         Round {currentRoundIndex + 1} of {rounds.length}
       </p>
       <button className="next-btn" onClick={onNext}>
-        Next round →
+        {currentRoundIndex === rounds.length - 1 ? 'On to step 6 →' : 'Next round →'}
       </button>
     </div>
   );

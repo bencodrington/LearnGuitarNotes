@@ -37,7 +37,7 @@ export default function Step4Content({
         Pair {currentPairIndex + 1} of {pairs.length}
       </p>
       <button className="next-btn" onClick={onNext}>
-        Next pair →
+        {currentPairIndex === pairs.length - 1 ? 'On to step 5 →' : 'Next pair →'}
       </button>
     </div>
   );

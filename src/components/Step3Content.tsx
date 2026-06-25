@@ -12,7 +12,9 @@ export default function Step3Content({
   onToggleMute: () => void;
   onNext: () => void;
 }) {
-  const note = progress.step3.noteOrder[progress.step3.currentNoteIndex];
+  const { noteOrder, currentNoteIndex } = progress.step3;
+  const note = noteOrder[currentNoteIndex];
+  const buttonLabel = currentNoteIndex === noteOrder.length - 1 ? 'On to step 4 →' : 'Done, next note →';
   return (
     <div className="step-content">
       <p className="step-label">Step 3 — Sharps &amp; Flats</p>
@@ -24,7 +26,7 @@ export default function Step3Content({
         One note per beat.
       </p>
       <button className="next-btn" onClick={onNext}>
-        Done, next note →
+        {buttonLabel}
       </button>
     </div>
   );
