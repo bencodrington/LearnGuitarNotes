@@ -496,6 +496,10 @@
   font-size: 13px;
   color: var(--text);
   opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
 .app-footer a {
@@ -505,4 +509,14 @@
 
 .app-footer a:hover {
   text-decoration: underline;
+}
+
+.footer-github-link {
+  display: inline-flex;
+  text-decoration: none !important;
+}
+
+.footer-github-link:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
 }
